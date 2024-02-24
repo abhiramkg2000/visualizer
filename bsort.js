@@ -1,35 +1,48 @@
-var array = document.getElementById("array-elements");
-var btn1 = document.getElementById("insert");
-var btn2 = document.getElementById("start");
-var btn3 = document.getElementById("clr");
-var container = document.getElementById("contain");
-var status_heading=document.getElementById("status_heading");
+let array = document.getElementById("array-elements");
+let insertButton = document.getElementById("insert");
+let startButton = document.getElementById("start");
+startButton.disabled=true
+let clearButton = document.getElementById("clear");
+clearButton.disabled=true
+let container = document.getElementById("container");
+let status_heading=document.getElementById("status_heading");
 let squares = [];
+let inProgress=false;
 
-btn1.onclick = function display() {
-  var j = 0;
-  var i = 0;
-  var k=0;
-  swap = 0;
-  var temp = array.value;
-  const result = temp.split(" ");
-  for (i = 0; i < result.length; i++) {
-    var array_item = document.createElement("p");
-    array_item.setAttribute("id", i + 1);
-    array_item.innerHTML = result[i];
-    array_item.classList.add("box");
-    squares.push(array_item);
-    container.append(array_item);
+insertButton.onclick = function insert() {
+  let j = 0;
+  let i = 0;
+  let k=0;
+  let tempArray = array.value.replace(/\s/g, "");
+  if(tempArray){
+    let resultArray = tempArray.split(",");
+    resultArray=resultArray.filter((item)=>item!=='');
+    for (i = 0; i < resultArray.length; i++) {
+      let array_item = document.createElement("p");
+      array_item.setAttribute("id", i + 1);
+      array_item.innerHTML = resultArray[i];
+      array_item.classList.add("box");
+      squares.push(array_item);
+      container.append(array_item);
+    }
+    status_heading.innerHTML="";
+    startButton.disabled=false;
+    clearButton.disabled=false;
   }
-  status_heading.innerHTML="";
 };
 
-btn2.onclick = function bubble_sort() {
+startButton.onclick = function start() {
   status_heading.innerHTML="In Progress";
-  Tutor();
+  if(inProgress){
+    return;
+  }
+  bubbleSort();
+  inProgress=true;
+  startButton.disabled=true
+  clearButton.disabled=true
 };
 
-btn3.onclick = function reset() {
+clearButton.onclick = function reset() {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -38,30 +51,29 @@ btn3.onclick = function reset() {
   }
   status_heading.innerHTML="";
   array.value="";
+  clearButton.disabled=true;
+  startButton.disabled=true;
 };
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function Tutor() {
+async function bubbleSort() {
   
   for (i = 0; i < (squares.length - 1); i++) 
   {
         for (j = 0; j < (squares.length - i-1); j++) 
         {
-            console.log("i= ",i," j= ",j);
             squares[j].classList.add("active");
             squares[j + 1].classList.add("active");
-            console.log("squares ",container);
             if (parseInt(squares[j].innerHTML) > parseInt(squares[j + 1].innerHTML)) 
             {
                 squares[j+1].classList.add("move-left");
                 squares[j].classList.add("move-right");
-                swap = squares[j];
+                let swap = squares[j];
                 squares[j]= squares[j + 1];
                 squares[j + 1] = swap;
-                console.log("comparing "+squares[j].innerHTML+" and "+squares[j+1].innerHTML);
                 await sleep(2000);
                 while (container.firstChild) 
                 {
@@ -69,10 +81,9 @@ async function Tutor() {
                 }
                 for (let k = 0; k < squares.length; k++) 
                 {
-                  var array_item = document.createElement("p");
+                  let array_item = document.createElement("p");
                   array_item.setAttribute("id", k + 1);
                   array_item.innerHTML = squares[k].innerHTML;
-                  console.log(" "+squares[k].innerHTML+" ");
                   array_item.classList.add("box");
                   squares[k].classList.remove("move-left");
                   squares[k].classList.remove("move-right");
@@ -86,5 +97,8 @@ async function Tutor() {
             await sleep(2000);
         }
     }
+    inProgress=false;
+    startButton.disabled=false
+    clearButton.disabled=false
     status_heading.innerHTML="Completed";
 }
