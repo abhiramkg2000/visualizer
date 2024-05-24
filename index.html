@@ -15,10 +15,10 @@
   </head>
   <body>
     <div class="main">
-      <div class="search">
+      <div class="array_container">
         <h1>Bubble-Sort</h1>
-        <div class="controls">
-          <div class="textfield">
+        <div class="array_input_container">
+          <div>
             <label for="array-elements">Enter array elements</label>
             <input
               type=" text"
@@ -26,6 +26,7 @@
               name="array-elements"
               placeholder="separated with commas"
               autofocus
+              autocomplete="off"
             /><br />
           </div>
           <div class="buttons">
@@ -35,8 +36,8 @@
           </div>
         </div>
       </div>
-      <div id="container"></div>
-      <div class="status">
+      <div id="sort_array_container"></div>
+      <div>
         <h1 id="status_heading"></h1>
       </div>
     </div>

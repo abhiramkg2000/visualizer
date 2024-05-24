@@ -1,49 +1,87 @@
+/*************************************************************************Common CSS starts************************************************************************/
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-drag: none;
 }
+
 body {
   background-color: #f82b60;
+  font-family: "Poppins", sans-serif;
 }
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+/*************************************************************************Common CSS ends************************************************************************/
+
 .main {
-  background-color: #f82b60;
+  color: #e2e2e2;
   width: 100%;
   padding: 0 10px;
   max-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: "Poppins", sans-serif;
-  color: #e2e2e2;
 }
+
+/*************************************************************************Array Elements CSS starts************************************************************************/
+.array_container {
+  height: 200px;
+  margin-top: 30px;
+}
+
+.array_input_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.array_input_container label {
+  font-size: 1.5rem;
+}
+
 #array-elements {
-  margin: 20px 0 20px 20px;
   height: 30px;
+  margin: 20px 0 20px 20px;
   border-radius: 10px;
   padding: 0 10px;
+  background-color: #e2e2e2;
   border: 2px solid #e2e2e2;
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
 }
+
 #array-elements:focus {
   outline: none;
 }
-#array-elements::placeholder {
-  color: #000;
+
+/*************************************************************************Array Elements CSS ends************************************************************************/
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
-.paragraph {
-  color: #000;
+
+.button {
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
   background-color: #e2e2e2;
-  font-size: 20px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  border: 2px solid #e2e2e2;
 }
-.paragraph-head {
-  color: #000;
-  background-color: #e2e2e2;
-  font-size: 20px;
-  text-decoration: underline;
-}
-#container {
+
+#sort_array_container {
   width: 100%;
   height: 200px;
   margin-left: 15px;
@@ -55,46 +93,13 @@ body {
   align-items: center;
   justify-content: center;
 }
-.search {
-  height: 200px;
-  margin-top: 30px;
-}
-.controls {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-.buttons {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
-}
-h1 {
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: underline;
-}
+
 #status_heading {
   text-decoration: none;
 }
-label {
-  font-size: 1.5rem;
-}
-input[type="text"] {
-  background-color: #e2e2e2;
-  color: black;
-  width: 80px;
-}
-.button {
-  width: 80px;
-  height: 30px;
-  border-radius: 30px;
-  background-color: #e2e2e2;
-  font-size: 1rem;
-  font-family: "Poppins", sans-serif;
-  text-transform: capitalize;
-  border: 2px solid #e2e2e2;
-}
+
+/*************************************************************************Box CSS starts************************************************************************/
+
 .box {
   width: 40px;
   height: 40px;
@@ -104,34 +109,12 @@ input[type="text"] {
   color: black;
   border: 1px solid black;
 }
+
+/*************************************************************************Box CSS ends************************************************************************/
+
+/*************************************************************************Box Animation starts************************************************************************/
 .active {
   background-color: yellow;
-}
-.move {
-  animation: mymove 5s;
-}
-
-@keyframes mymove {
-  50% {
-    transform: translateY(15px);
-    transform: translateX(20px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .search {
-    text-align: center;
-    width: 100%;
-  }
-  #array-elements {
-    width: 80%;
-  }
-  #container {
-    width: 80%;
-  }
 }
 
 .move-right {
@@ -178,3 +161,22 @@ input[type="text"] {
     transform: translate(-60px, 0px);
   }
 }
+
+/*************************************************************************Box Animation ends************************************************************************/
+
+/*************************************************************************Media Query starts************************************************************************/
+
+@media screen and (max-width: 600px) {
+  .search {
+    text-align: center;
+    width: 100%;
+  }
+  #array-elements {
+    width: 80%;
+  }
+  #container {
+    width: 80%;
+  }
+}
+
+/*************************************************************************Media Query ends************************************************************************/

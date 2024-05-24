@@ -1,11 +1,14 @@
 let array = document.getElementById("array-elements");
+
 let insertButton = document.getElementById("insert");
 let startButton = document.getElementById("start");
 startButton.disabled = true;
 let clearButton = document.getElementById("clear");
 clearButton.disabled = true;
-let container = document.getElementById("container");
+
+let container = document.getElementById("sort_array_container");
 let status_heading = document.getElementById("status_heading");
+
 let squares = [];
 let inProgress = false;
 
@@ -33,9 +36,6 @@ insertButton.onclick = function insert() {
 
 startButton.onclick = function start() {
   status_heading.innerHTML = "In Progress";
-  if (inProgress) {
-    return;
-  }
   bubbleSort();
   inProgress = true;
   startButton.disabled = true;
