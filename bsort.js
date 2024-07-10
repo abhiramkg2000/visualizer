@@ -10,15 +10,14 @@ let container = document.getElementById("sort_array_container");
 let status_heading = document.getElementById("status_heading");
 
 let squares = [];
-let inProgress = false;
 
 insertButton.onclick = function insert() {
   let j = 0;
   let i = 0;
   let k = 0;
-  let tempArray = array.value.replace(/\s/g, "");
-  if (tempArray) {
-    let resultArray = tempArray.split(",");
+  let temp = array.value.replace(/\s/g, "");
+  if (temp) {
+    let resultArray = temp.split(",");
     resultArray = resultArray.filter((item) => item !== "");
     for (i = 0; i < resultArray.length; i++) {
       let array_item = document.createElement("p");
@@ -36,10 +35,9 @@ insertButton.onclick = function insert() {
 
 startButton.onclick = function start() {
   status_heading.innerHTML = "In Progress";
-  bubbleSort();
-  inProgress = true;
   startButton.disabled = true;
-  clearButton.disabled = true;
+  insertButton.disabled = true;
+  bubbleSort();
 };
 
 clearButton.onclick = function reset() {
@@ -53,6 +51,7 @@ clearButton.onclick = function reset() {
   array.value = "";
   clearButton.disabled = true;
   startButton.disabled = true;
+  insertButton.disabled = false;
 };
 
 function sleep(ms) {
@@ -91,8 +90,7 @@ async function bubbleSort() {
       await sleep(2000);
     }
   }
-  inProgress = false;
   startButton.disabled = false;
-  clearButton.disabled = false;
+  insertButton.disabled = false;
   status_heading.innerHTML = "Completed";
 }
