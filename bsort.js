@@ -16,7 +16,7 @@ insertButton.onclick = function insert() {
   let i = 0;
   let k = 0;
   let temp = array.value.replace(/\D/g, "");
-  let resultArray = temp.split(",");
+  let resultArray = temp.split("");
   resultArray = resultArray.filter((item) => item !== "");
   if (resultArray.length) {
     for (i = 0; i < resultArray.length; i++) {
