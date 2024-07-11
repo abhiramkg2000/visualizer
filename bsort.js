@@ -1,4 +1,4 @@
-let array = document.getElementById("array-elements");
+let array = document.getElementById("array-input");
 
 let insertButton = document.getElementById("insert");
 let startButton = document.getElementById("start");
@@ -15,10 +15,10 @@ insertButton.onclick = function insert() {
   let j = 0;
   let i = 0;
   let k = 0;
-  let temp = array.value.replace(/\s/g, "");
-  if (temp) {
-    let resultArray = temp.split(",");
-    resultArray = resultArray.filter((item) => item !== "");
+  let temp = array.value.replace(/\D/g, "");
+  let resultArray = temp.split(",");
+  resultArray = resultArray.filter((item) => item !== "");
+  if (resultArray.length) {
     for (i = 0; i < resultArray.length; i++) {
       let array_item = document.createElement("p");
       array_item.setAttribute("id", i + 1);
@@ -30,6 +30,8 @@ insertButton.onclick = function insert() {
     status_heading.innerHTML = "";
     startButton.disabled = false;
     clearButton.disabled = false;
+  } else {
+    alert("array values should be a number");
   }
 };
 
@@ -90,7 +92,9 @@ async function bubbleSort() {
       await sleep(2000);
     }
   }
-  startButton.disabled = false;
-  insertButton.disabled = false;
-  status_heading.innerHTML = "Completed";
+  if (!clearButton.disabled) {
+    startButton.disabled = false;
+    insertButton.disabled = false;
+    status_heading.innerHTML = "Completed";
+  }
 }
